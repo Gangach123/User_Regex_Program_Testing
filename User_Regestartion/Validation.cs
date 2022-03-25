@@ -20,6 +20,14 @@ namespace Regex_Problems
         public static string password_3 = @"^(?=.*[0-9])[a-zA-Z0-9]{8,}$";
         public static string password_4 = "^.*(?=.{8,})(?=.*)(?=.*[a-z])(?=.*[A-Z])(?=.*[!*@#$%^&+=]).*$";
         public static string mail = "^[a-z]{3,}(([.|+]{1})?([-]{1})?[0-9]{1,})?@[a-z0-9]{1,}.[a-z]{3}(.[a-z]{2,4})?$";
+
+
+        public Func<string, string> LValidateFirstName = data => Regex.IsMatch(data, firstName) ? "valid firstName" : throw new CustomException(CustomException.ExceptionType.INVALID_FIRSTNAME, "Invalid firstName");
+        public Func<string, string> LValidateLastName = data => Regex.IsMatch(data, lastName) ? "valid lastName" : throw new CustomException(CustomException.ExceptionType.INVALID_LASTNAME, "Invalid lastName");
+        public Func<string, string> LValidateEmail = data => Regex.IsMatch(data, email) ? "valid email" : throw new CustomException(CustomException.ExceptionType.INVALID_EMAIL, "Invalid email");
+        public Func<string, string> LValidateMobileNo = data => Regex.IsMatch(data, mobileNo) ? "valid mobileNo" : throw new CustomException(CustomException.ExceptionType.INVALID_MOBILE_NO, "Invalid mobileNo");
+        public Func<string, string> LValidatePassword = data => Regex.IsMatch(data, password) ? "valid password" : throw new CustomException(CustomException.ExceptionType.INVALID_PASSWORD, "Invalid password");
+
         public string ValidateFirstName(string data)
         {
             bool result = Regex.IsMatch(data, firstName);
